@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Tetris AI</title>
+    <link href="style/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="fb-root"></div>
+<div class="container">
+    <h1 class="header">Tetris AI</h1>
+
+    <div class="game-container">
+        <canvas width="200px" height="400px" id="grid-canvas" class="grid"></canvas>
+        <div class="controls-container">
+            <div id="score-container" class="score-container">0</div>
+            <div id="next-container" class="next-container">
+                <canvas id="next-canvas" class="next-canvas" width="80px" height="80px"></canvas>
+            </div>
+            <a id="ai-button" class="start-ai-button">Run AI</a>
+            <a id="reset-button" class="reset-button">Reset</a>
+        </div>
+    </div>
+    <hr>
+    <div class="footer">
+        <p>Created by <a href="http://codemyroad.wordpress.com" target="#">Lee Yiyuan</a>. To read about the AI, <a href="http://codemyroad.wordpress.com/2013/04/14/tetris-ai-the-near-perfect-player/" target="#">Click here</a></p>
+
+       <a href="https://twitter.com/share" class="twitter-share-button" data-url="leeyiyuan.github.io/tetrisai" data-via="LeeYiyuan">Tweet</a>
+        <div class="fb-like" data-href="http://leeyiyuan.github.io/tetrisai" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    </div>
+</div>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script src="js/grid.js"></script>
+<script src="js/piece.js"></script>
+<script src="js/game_manager.js"></script>
+<script src="js/random_piece_generator.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/updater.js"></script>
+<script>
+    var manager = new GameManager();
+    manager.actuate(manager.grid, manager.workingPiece);
+</script>
+
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=142725279075499&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+</body>
+</html>
