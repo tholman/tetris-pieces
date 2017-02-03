@@ -1,44 +1,51 @@
-function Updater(){
-    this.lastUpdateTime = Date.now();
-    this.deltaThreshold = 500;
-    this.updateCallback = null;
-    this.skipping = false;
+/**
+ * Updater, controls time and speed.
+ */
 
-    window.requestAnimFrame = function(){ // Polyfill
-        return (
-            window.requestAnimationFrame       ||
-            window.webkitRequestAnimationFrame ||
-            window.mozRequestAnimationFrame    ||
-            window.oRequestAnimationFrame      ||
-            window.msRequestAnimationFrame     ||
-            function(callback){
-                window.setTimeout(callback, 1000 / 60);
-            }
-            );
-    }();
+function Updater(){
+  
+  this.lastUpdateTime = Date.now();
+  this.deltaThreshold = 600; // MS before each update
+  this.updateCallback = null;
+
+  window.requestAnimFrame = function(){ // Polyfill
+  return (
+    window.requestAnimationFrame     ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame  ||
+    window.oRequestAnimationFrame    ||
+    window.msRequestAnimationFrame   ||
+    function(callback){
+    window.setTimeout(callback, 1000 / 60);
+    }
+  );
+  }();
 };
 
 Updater.prototype.onUpdate = function(callback){
-    this.updateCallback = callback;
+  this.updateCallback = callback;
 };
 
 Updater.prototype.doUpdate = function(timestamp){
-    if(this.updateCallback != null){
-        this.updateCallback();
-    }
-    this.lastUpdateTime = timestamp;
+
+  if(this.updateCallback != null){
+  this.updateCallback();
+  }
+  
+  this.lastUpdateTime = timestamp;
 };
 
 Updater.prototype.checkUpdate = function(timestamp){
-    var self = this;
-    var delta = timestamp - this.lastUpdateTime;
+  
+  var self = this;
+  var delta = timestamp - this.lastUpdateTime;
 
-    if (this.skipping || delta > this.deltaThreshold){
-        this.doUpdate(timestamp);
-    }
+  if (delta > this.deltaThreshold){
+  this.doUpdate(timestamp);
+  }
 
+  window.requestAnimFrame(function(){
+  self.checkUpdate(Date.now());
+  });
 
-    window.requestAnimFrame(function(){
-        self.checkUpdate(Date.now());
-    });
 };

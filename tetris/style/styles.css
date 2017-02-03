@@ -1,0 +1,22 @@
+/**
+ * Styles!
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100%;
+  min-width: 100%;
+  margin: 0px;
+  width: 0px;
+  height: 100%;
+  overflow: hidden;
+}
+
+canvas {
+  background: #fff;
+  position: absolute;
+  bottom: 0px;
+}
