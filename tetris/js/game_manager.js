@@ -75,7 +75,7 @@ GameManager.prototype.actuate = function(){
         context.fillRect(this.pieceWidth * c, this.pieceHeight * r, this.pieceWidth, this.pieceHeight);
 
         // Border?
-        context.fillStyle = "rgba(255, 255, 255, 0.5)";
+        context.fillStyle = "rgba(255, 255, 255, 0.3)";
         context.fillRect(this.pieceWidth * c + this.displacementWidth, this.pieceHeight * r + this.displacementWidth, this.pieceWidth / 2, this.strokeThickness);
         context.fillRect(this.pieceWidth * c + this.displacementWidth, this.pieceHeight * r + this.displacementWidth + this.strokeThickness, this.strokeThickness, this.pieceWidth / 2 - this.strokeThickness );
       }

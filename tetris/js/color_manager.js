@@ -5,7 +5,7 @@
 
 function ColorManager( baseColor ){
   this.hueRotation = 0;
-  this.rotationSpeed = 5;
+  this.rotationSpeed = 4;
   this.baseColor = '#F0C9DD'; // Light pink
 };
 
