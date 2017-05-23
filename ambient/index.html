@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  
+  <head lang="en">
+
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <title>Tetris AI</title>
+
+    <!-- Styles -->
+    <link href="./css/styles.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    
+    <canvas id="grid-canvas" class="grid"></canvas>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/color_manager.js"></script>
+    <script src="js/grid.js"></script>
+    <script src="js/piece.js"></script>
+    <script src="js/game_manager.js"></script>
+    <script src="js/random_piece_generator.js"></script>
+    <script src="js/ai.js"></script>
+    <script src="js/updater.js"></script>
+    
+    <!-- Init -->
+    <script>
+      var manager = new GameManager();
+      manager.actuate(manager.grid, manager.workingPiece);
+    </script>
+  </body>
+
+</html>

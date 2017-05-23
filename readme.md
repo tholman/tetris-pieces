@@ -1,7 +1,10 @@
-# Electric Object Projects
+# Electric Object, Tetris Anniversary
 
-1. Tetris
-2. Gradiental Clock
-3. Snake
-4. Ascii X
-5. 
+### 1. Colors
+- Full screen, colors, autosolving, gradual gradient changes
+
+### 2. Classic
+- Full screen, Classic (pixelated), no color changes
+
+### 3. Containered
+- Game boy casing, tetris casing (solid image?), next block, and score visible.

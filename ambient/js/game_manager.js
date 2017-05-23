@@ -21,7 +21,6 @@ function GameManager(){
 
 GameManager.prototype.setup = function(){
 
-  // Fixed to 10 rows width
   this.baseColumns = 8;
 
   this.pieceWidth = window.innerWidth / this.baseColumns;
@@ -59,15 +58,12 @@ GameManager.prototype.actuate = function(){
   var context = this.gridCanvas.getContext('2d');
   context.save();
   
-
-  // TODO: Could clear this much better.
   context.clearRect(0, 0, this.gridCanvas.width, this.gridCanvas.height);
   
   for(var r = 2; r < _grid.rows; r++){
     
     for(var c = 0; c < _grid.columns; c++){
       
-      // TH: != 0 rather than == 1
       if (_grid.cells[r][c] != 0){
 
         context.fillStyle = _grid.cells[r][c];
