@@ -15,7 +15,7 @@ RandomPieceGenerator.prototype.nextPiece = function(){
     this.index = 0;
   }
 
-  return Piece.fromIndex(this.bag[this.index], this.drawFunctions.getDrawFunction());
+  return Piece.fromIndex(this.bag[this.index], this.drawFunctions.getDrawFunction(this.bag[this.index]));
 
 };
 
