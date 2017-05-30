@@ -106,7 +106,7 @@ GameManager.prototype.setWorkingPiece = function(){
 
   // TODO: NO WAYYYY
   else{
-    alert("Game Over!");
+
   }
 };
 

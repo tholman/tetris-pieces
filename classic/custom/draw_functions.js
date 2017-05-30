@@ -2,12 +2,17 @@
 
 function square(context, x, y, width, height) {
 
+  var unitWidth = 0.125 * width;
+  
+  // Border
   context.fillStyle = "#000";
   context.fillRect(width * x, height * y, width, height);
 
-  context.strokeStyle = "#C6CFA4";
-  context.lineWidth = 6;
-  context.strokeRect(width * x + 10, height * y + 10, width - 20, height - 20);
+  context.fillStyle = "#C6CFA4";
+  context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth * 2, height - unitWidth * 2);
+
+  context.fillStyle = "#000";
+  context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 2, width - unitWidth * 4, height - unitWidth * 4);
 
 }
 
