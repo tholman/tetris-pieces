@@ -108,6 +108,22 @@ var eyes = [
 
     context.fillStyle = "#92BE7C";
     context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth, height - unitWidth * 2);
+
+    // Dots
+    context.fillStyle = "#3C6A4E";
+    
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 1, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 1, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 3, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 3, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 3, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 5, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 5, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 6, unitWidth, unitWidth);
+
     
   },
   function(context, x, y, width, height) {
@@ -120,6 +136,26 @@ var eyes = [
     context.fillStyle = "#92BE7C";
     context.fillRect(width * x, height * y + unitWidth, width, height - unitWidth * 2);
 
+    // Dots
+    context.fillStyle = "#3C6A4E";
+    context.fillRect(width * x + unitWidth * 0, height * y + unitWidth * 1, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 1, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 1, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 2, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 3, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 0, height * y + unitWidth * 4, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 4, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 5, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 7, height * y + unitWidth * 5, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 6, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 6, unitWidth, unitWidth);
+    
+
   },
   function(context, x, y, width, height) {
 
@@ -130,6 +166,25 @@ var eyes = [
 
     context.fillStyle = "#92BE7C";
     context.fillRect(width * x, height * y + unitWidth, width, height - unitWidth * 2);
+
+    // Dots
+    context.fillStyle = "#3C6A4E";
+    context.fillRect(width * x + unitWidth * 0, height * y + unitWidth * 1, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 1, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 1, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 2, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 3, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 0, height * y + unitWidth * 4, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 4, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 5, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 7, height * y + unitWidth * 5, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 6, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 6, unitWidth, unitWidth);
 
   },
   function(context, x, y, width, height) {
@@ -141,6 +196,23 @@ var eyes = [
 
     context.fillStyle = "#92BE7C";
     context.fillRect(width * x, height * y + unitWidth, width - unitWidth, height - unitWidth * 2);
+
+    // Dots
+    context.fillStyle = "#3C6A4E";
+    context.fillRect(width * x + unitWidth * 0, height * y + unitWidth * 1, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 1, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 2, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 3, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 4, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 4, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 5, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 6, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 6, unitWidth, unitWidth);
   },
 
   // v1
@@ -153,6 +225,21 @@ var eyes = [
     context.fillStyle = "#92BE7C";
     context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth * 2, height - unitWidth);
 
+    // Dots
+    context.fillStyle = "#3C6A4E";
+    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth, unitWidth, unitWidth);
+    
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 2, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 2, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth, height * y + unitWidth * 4, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 4, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 5, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 6, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 6, unitWidth, unitWidth);
+
   },
   function(context, x, y, width, height) {
 
@@ -163,6 +250,29 @@ var eyes = [
 
     context.fillStyle = "#92BE7C";
     context.fillRect(width * x + unitWidth, height * y, width - unitWidth * 2, height);
+
+    // Dots
+    context.fillStyle = "#3C6A4E";
+
+    context.fillRect(width * x + unitWidth * 3, height * y, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 6, height * y, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth, height * y + unitWidth * 1, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 2, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 2, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 3, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 4, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 5, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 5, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 6, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 7, unitWidth, unitWidth);
+  
   },
   function(context, x, y, width, height) {
 
@@ -173,6 +283,28 @@ var eyes = [
 
     context.fillStyle = "#92BE7C";
     context.fillRect(width * x + unitWidth, height * y, width - unitWidth * 2, height);
+
+    // Dots
+    context.fillStyle = "#3C6A4E";
+
+    context.fillRect(width * x + unitWidth * 3, height * y, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 6, height * y, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth, height * y + unitWidth * 1, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 2, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 2, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 3, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 4, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 5, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 5, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 6, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 7, unitWidth, unitWidth);
   },
   function(context, x, y, width, height) {
 
@@ -183,6 +315,25 @@ var eyes = [
 
     context.fillStyle = "#92BE7C";
     context.fillRect(width * x + unitWidth, height * y, width - unitWidth * 2, height - unitWidth);
+
+    // Dots
+    context.fillStyle = "#3C6A4E";
+
+    context.fillRect(width * x + unitWidth * 6, height * y, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 1, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 2, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 2, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 3, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 4, unitWidth, unitWidth);
+    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 4, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 5, unitWidth, unitWidth);
+
+    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 6, unitWidth, unitWidth);
   }
 ]
 
