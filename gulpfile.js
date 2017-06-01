@@ -20,7 +20,8 @@ gulp.task('classic-tetris', function() {
 
 
 gulp.task('watch', function() {
-  gulp.watch(['./ambient/*', './core/*'], ['ambient-tetris']);
+  // gulp.watch(['./ambient/*', './core/*'], ['ambient-tetris']);
+  gulp.watch(['./classic/custom/*', './core/js/*'], ['classic-tetris']);
 });
 
 // gulp.task('scripts', function() {

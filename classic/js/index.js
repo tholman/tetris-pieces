@@ -94,9 +94,97 @@ function tee(context, x, y, width, height) {
 
   context.fillStyle = "#000";
   context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 5, unitWidth * 4, unitWidth);
-  context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 3, unitWidth, unitWidth * 2);
+  context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 3, unitWidth, unitWidth * 3);
 
 }
+
+var eyes = [
+  //h1
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth, height - unitWidth * 2);
+    
+  },
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+    
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x, height * y + unitWidth, width, height - unitWidth * 2);
+
+  },
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x, height * y + unitWidth, width, height - unitWidth * 2);
+
+  },
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+    
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x, height * y + unitWidth, width - unitWidth, height - unitWidth * 2);
+  },
+
+  // v1
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth * 2, height - unitWidth);
+
+  },
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+    
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x + unitWidth, height * y, width - unitWidth * 2, height);
+  },
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+    
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x + unitWidth, height * y, width - unitWidth * 2, height);
+  },
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+    
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x + unitWidth, height * y, width - unitWidth * 2, height - unitWidth);
+  }
+]
 
 var drawFunctions = [
 
@@ -110,7 +198,9 @@ var drawFunctions = [
 
   ess,
 
-  tee
+  tee,
+
+  eyes
 
 ]
 
@@ -301,8 +391,14 @@ Grid.prototype.addPiece = function(piece) {
       if (piece.cells[r][c] != 0 && _r >= 0){
 
         // TH: Updates color, rather than 1
-        this.cells[_r][_c] = piece.color;
+        if (piece.cells[r][c] > 1) {
+          var num = piece.cells[r][c] - 2;
+          this.cells[_r][_c] = piece.color[num];
+        } else {
+          this.cells[_r][_c] = piece.color;
+        }
       }
+
     }
   }
 };
@@ -489,7 +585,7 @@ Piece.fromIndex = function(index, color){
     case 6: // I
       cells = [
         [0, 0, 0, 0],
-        [1, 1, 1, 1],
+        [2, 3, 4, 5],
         [0, 0, 0, 0],
         [0, 0, 0, 0]
       ];
@@ -599,7 +695,6 @@ GameManager.prototype.setup = function(){
   this.pieceHeight = this.pieceWidth;
 
   this.displacementWidth = Math.floor(this.pieceWidth / 4);
-  this.strokeThickness = 20;
 
   var canvasHeightPieces = Math.ceil(window.innerHeight / this.pieceHeight) + 2;
 
@@ -639,8 +734,8 @@ GameManager.prototype.actuate = function(){
       if (_grid.cells[r][c] != 0){
 
 
+        // console.log(_grid.cells[r], _grid.cells[r][c]);
         _grid.cells[r][c](context, c, r, this.pieceWidth, this.pieceHeight);
-
         
       }
     }
@@ -673,6 +768,17 @@ GameManager.prototype.setWorkingPiece = function(){
 
     if (this.aiActive) {
       this.aiMove();
+    }
+
+    // I piece
+    if( this.workingPiece.cells.length > 3) {
+
+      if( this.workingPiece.cells[0][2] !== 0 ) {
+        this.workingPiece.cells[0][2] = 6;
+        this.workingPiece.cells[1][2] = 7;
+        this.workingPiece.cells[2][2] = 8;
+        this.workingPiece.cells[3][2] = 9;
+      }
     }
   }
 

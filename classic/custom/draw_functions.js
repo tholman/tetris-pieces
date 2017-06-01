@@ -94,9 +94,97 @@ function tee(context, x, y, width, height) {
 
   context.fillStyle = "#000";
   context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 5, unitWidth * 4, unitWidth);
-  context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 3, unitWidth, unitWidth * 2);
+  context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 3, unitWidth, unitWidth * 3);
 
 }
+
+var eyes = [
+  //h1
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth, height - unitWidth * 2);
+    
+  },
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+    
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x, height * y + unitWidth, width, height - unitWidth * 2);
+
+  },
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x, height * y + unitWidth, width, height - unitWidth * 2);
+
+  },
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+    
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x, height * y + unitWidth, width - unitWidth, height - unitWidth * 2);
+  },
+
+  // v1
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth * 2, height - unitWidth);
+
+  },
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+    
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x + unitWidth, height * y, width - unitWidth * 2, height);
+  },
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+    
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x + unitWidth, height * y, width - unitWidth * 2, height);
+  },
+  function(context, x, y, width, height) {
+
+    var unitWidth = 0.125 * width;
+    
+    context.fillStyle = "#000";
+    context.fillRect(width * x, height * y, width, height);
+
+    context.fillStyle = "#92BE7C";
+    context.fillRect(width * x + unitWidth, height * y, width - unitWidth * 2, height - unitWidth);
+  }
+]
 
 var drawFunctions = [
 
@@ -110,7 +198,9 @@ var drawFunctions = [
 
   ess,
 
-  tee
+  tee,
+
+  eyes
 
 ]
 

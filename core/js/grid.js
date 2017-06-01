@@ -175,8 +175,14 @@ Grid.prototype.addPiece = function(piece) {
       if (piece.cells[r][c] != 0 && _r >= 0){
 
         // TH: Updates color, rather than 1
-        this.cells[_r][_c] = piece.color;
+        if (piece.cells[r][c] > 1) {
+          var num = piece.cells[r][c] - 2;
+          this.cells[_r][_c] = piece.color[num];
+        } else {
+          this.cells[_r][_c] = piece.color;
+        }
       }
+
     }
   }
 };

@@ -27,7 +27,6 @@ GameManager.prototype.setup = function(){
   this.pieceHeight = this.pieceWidth;
 
   this.displacementWidth = Math.floor(this.pieceWidth / 4);
-  this.strokeThickness = 20;
 
   var canvasHeightPieces = Math.ceil(window.innerHeight / this.pieceHeight) + 2;
 
@@ -67,8 +66,8 @@ GameManager.prototype.actuate = function(){
       if (_grid.cells[r][c] != 0){
 
 
+        // console.log(_grid.cells[r], _grid.cells[r][c]);
         _grid.cells[r][c](context, c, r, this.pieceWidth, this.pieceHeight);
-
         
       }
     }
@@ -101,6 +100,17 @@ GameManager.prototype.setWorkingPiece = function(){
 
     if (this.aiActive) {
       this.aiMove();
+    }
+
+    // I piece
+    if( this.workingPiece.cells.length > 3) {
+
+      if( this.workingPiece.cells[0][2] !== 0 ) {
+        this.workingPiece.cells[0][2] = 6;
+        this.workingPiece.cells[1][2] = 7;
+        this.workingPiece.cells[2][2] = 8;
+        this.workingPiece.cells[3][2] = 9;
+      }
     }
   }
 

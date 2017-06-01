@@ -61,7 +61,7 @@ Piece.fromIndex = function(index, color){
     case 6: // I
       cells = [
         [0, 0, 0, 0],
-        [1, 1, 1, 1],
+        [2, 3, 4, 5],
         [0, 0, 0, 0],
         [0, 0, 0, 0]
       ];
