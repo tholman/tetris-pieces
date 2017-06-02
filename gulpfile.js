@@ -18,22 +18,14 @@ gulp.task('classic-tetris', function() {
     .pipe(gulp.dest('./classic/js/'))
 });
 
-
-gulp.task('watch', function() {
-  // gulp.watch(['./ambient/*', './core/*'], ['ambient-tetris']);
-  gulp.watch(['./classic/custom/*', './core/js/*'], ['classic-tetris']);
+gulp.task('colored-classic-tetris', function() {
+  gulp.src(['./colored_classic/custom/draw_functions.js', './core/js/grid.js', './colored_classic/custom/piece.js', './colored_classic/custom/game_manager.js', './colored_classic/custom/random_piece_generator.js', './core/js/ai.js', './core/js/updater.js'])
+    .pipe(concat('index.js'))
+    .pipe(gulp.dest('./colored_classic/js/'))
 });
 
-// gulp.task('scripts', function() {
-//   gulp.src(['./lib/file3.js', './lib/file1.js', './lib/file2.js'])
-//     .pipe(concat('all.js'))
-//     .pipe(uglify())
-//     .pipe(gulp.dest('./dist/'))
-// });
-
-// gulp.task('scripts', function() {
-//   gulp.src(['./lib/file3.js', './lib/file1.js', './lib/file2.js'])
-//     .pipe(concat('all.js'))
-//     .pipe(uglify())
-//     .pipe(gulp.dest('./dist/'))
-// });
+gulp.task('watch', function() {
+  gulp.watch(['./ambient/custom/*', './core/*'], ['ambient-tetris']);
+  gulp.watch(['./classic/custom/*', './core/js/*'], ['classic-tetris']);
+  gulp.watch(['./colored_classic/custom/*', './core/js/*'], ['colored-classic-tetris']);
+});
