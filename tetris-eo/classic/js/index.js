@@ -1077,7 +1077,7 @@ AI.prototype.best = function(grid, workingPieces, workingPieceIndex){
 function Updater(){
   
   this.lastUpdateTime = Date.now();
-  this.deltaThreshold = 50; // MS before each update
+  this.deltaThreshold = 300; // MS before each update
   this.updateCallback = null;
 
   window.requestAnimFrame = function(){ // Polyfill

@@ -1,370 +1,147 @@
 
 
-function square(context, x, y, width, height) {
+// http://stackoverflow.com/questions/17433015/change-the-hue-of-a-rgb-color-in-javascript
+// TODO: Clean up
 
-  var unitWidth = 0.125 * width;
-  
-  // Border
-  context.fillStyle = "#000";
-  context.fillRect(width * x, height * y, width, height);
-
-  context.fillStyle = "#C6CFA4";
-  context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth * 2, height - unitWidth * 2);
-
-  context.fillStyle = "#000";
-  context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 2, width - unitWidth * 4, height - unitWidth * 4);
-
+function changeHue(rgb, degree) {
+    var hsl = rgbToHSL(rgb);
+    hsl.h += degree;
+    if (hsl.h > 360) {
+        hsl.h -= 360;
+    }
+    else if (hsl.h < 0) {
+        hsl.h += 360;
+    }
+    return hslToRGB(hsl);
 }
 
-function jay(context, x, y, width, height) {
+// exepcts a string and returns an object
+function rgbToHSL(rgb) {
+    // strip the leading # if it's there
+    rgb = rgb.replace(/^\s*#|\s*$/g, '');
 
-  var unitWidth = 0.125 * width;
+    // convert 3 char codes --> 6, e.g. `E0F` --> `EE00FF`
+    if(rgb.length == 3){
+        rgb = rgb.replace(/(.)/g, '$1$1');
+    }
 
-  // Border
-  context.fillStyle = "#000";
-  context.fillRect(width * x, height * y, width, height);
+    var r = parseInt(rgb.substr(0, 2), 16) / 255,
+        g = parseInt(rgb.substr(2, 2), 16) / 255,
+        b = parseInt(rgb.substr(4, 2), 16) / 255,
+        cMax = Math.max(r, g, b),
+        cMin = Math.min(r, g, b),
+        delta = cMax - cMin,
+        l = (cMax + cMin) / 2,
+        h = 0,
+        s = 0;
 
-  context.fillStyle = "#92BE7C";
-  context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth * 2, height - unitWidth * 2);
+    if (delta == 0) {
+        h = 0;
+    }
+    else if (cMax == r) {
+        h = 60 * (((g - b) / delta) % 6);
+    }
+    else if (cMax == g) {
+        h = 60 * (((b - r) / delta) + 2);
+    }
+    else {
+        h = 60 * (((r - g) / delta) + 4);
+    }
 
-  context.fillStyle = "#000";
-  context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 2, width - unitWidth * 4, height - unitWidth * 4);
+    if (delta == 0) {
+        s = 0;
+    }
+    else {
+        s = (delta/(1-Math.abs(2*l - 1)))
+    }
 
-  context.fillStyle = "#C6CFA4";
-  context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 3, width - unitWidth * 6, height - unitWidth * 6);
+    return {
+        h: h,
+        s: s,
+        l: l
+    }
 }
 
-function ell(context, x, y, width, height) {
-  
-  var unitWidth = 0.125 * width;
-  
-  context.fillStyle = "#000";
-  context.fillRect(width * x, height * y, width, height);
-  
-  context.fillStyle = "#3C6A4E";
-  context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth * 2, height - unitWidth * 2);
+// expects an object and returns a string
+function hslToRGB(hsl) {
+    var h = hsl.h,
+        s = hsl.s,
+        l = hsl.l,
+        c = (1 - Math.abs(2*l - 1)) * s,
+        x = c * ( 1 - Math.abs((h / 60 ) % 2 - 1 )),
+        m = l - c/ 2,
+        r, g, b;
 
+    if (h < 60) {
+        r = c;
+        g = x;
+        b = 0;
+    }
+    else if (h < 120) {
+        r = x;
+        g = c;
+        b = 0;
+    }
+    else if (h < 180) {
+        r = 0;
+        g = c;
+        b = x;
+    }
+    else if (h < 240) {
+        r = 0;
+        g = x;
+        b = c;
+    }
+    else if (h < 300) {
+        r = x;
+        g = 0;
+        b = c;
+    }
+    else {
+        r = c;
+        g = 0;
+        b = x;
+    }
+
+    r = normalize_rgb_value(r, m);
+    g = normalize_rgb_value(g, m);
+    b = normalize_rgb_value(b, m);
+
+    return rgbToHex(r,g,b);
 }
 
-function zee(context, x, y, width, height) {
-  
-  var unitWidth = 0.125 * width;
-  
-  context.fillStyle = "#000";
-  context.fillRect(width * x, height * y, width, height);
-
-  context.fillStyle = "#92BE7C";
-  context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth * 2, height - unitWidth * 2);
-
-  context.fillStyle = "#000";
-  context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 3, width - unitWidth * 6, height - unitWidth * 6);
-  
+function normalize_rgb_value(color, m) {
+    color = Math.floor((color + m) * 255);
+    if (color < 0) {
+        color = 0;
+    }
+    return color;
 }
 
-function ess(context, x, y, width, height) {
-  
-  var unitWidth = 0.125 * width;
-
-  context.fillStyle = "#000";
-  context.fillRect(width * x, height * y, width, height);
-
-  context.fillStyle = "#3C6A4E";
-  context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth * 2, height - unitWidth * 2);
-
-  context.fillStyle = "#000";
-  context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 2, width - unitWidth * 4, height - unitWidth * 4);
-
-  context.fillStyle = "#C6CFA4";
-  context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 3, width - unitWidth * 6, height - unitWidth * 6);
+function rgbToHex(r, g, b) {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
-
-function tee(context, x, y, width, height) {
-  
-  var unitWidth = 0.125 * width;
-
-  context.fillStyle = "#000";
-  context.fillRect(width * x, height * y, width, height);
-
-  context.fillStyle = "#92BE7C";
-  context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth * 2, height - unitWidth * 2);
-
-  context.fillStyle = "#C6CFA4";
-  context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 2, unitWidth, height - unitWidth * 4);
-  context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 2, unitWidth * 4, unitWidth);
-
-  context.fillStyle = "#000";
-  context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 5, unitWidth * 4, unitWidth);
-  context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 3, unitWidth, unitWidth * 3);
-
-}
-
-var eyes = [
-  //h1
-  function(context, x, y, width, height) {
-
-    var unitWidth = 0.125 * width;
-    context.fillStyle = "#000";
-    context.fillRect(width * x, height * y, width, height);
-
-    context.fillStyle = "#92BE7C";
-    context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth, height - unitWidth * 2);
-
-    // Dots
-    context.fillStyle = "#3C6A4E";
-    
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 1, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 1, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 3, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 3, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 3, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 5, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 5, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 6, unitWidth, unitWidth);
-
-    
-  },
-  function(context, x, y, width, height) {
-
-    var unitWidth = 0.125 * width;
-    
-    context.fillStyle = "#000";
-    context.fillRect(width * x, height * y, width, height);
-
-    context.fillStyle = "#92BE7C";
-    context.fillRect(width * x, height * y + unitWidth, width, height - unitWidth * 2);
-
-    // Dots
-    context.fillStyle = "#3C6A4E";
-    context.fillRect(width * x + unitWidth * 0, height * y + unitWidth * 1, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 1, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 1, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 2, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 3, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 0, height * y + unitWidth * 4, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 4, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 5, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 7, height * y + unitWidth * 5, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 6, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 6, unitWidth, unitWidth);
-    
-
-  },
-  function(context, x, y, width, height) {
-
-    var unitWidth = 0.125 * width;
-
-    context.fillStyle = "#000";
-    context.fillRect(width * x, height * y, width, height);
-
-    context.fillStyle = "#92BE7C";
-    context.fillRect(width * x, height * y + unitWidth, width, height - unitWidth * 2);
-
-    // Dots
-    context.fillStyle = "#3C6A4E";
-    context.fillRect(width * x + unitWidth * 0, height * y + unitWidth * 1, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 1, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 1, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 2, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 3, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 0, height * y + unitWidth * 4, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 4, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 5, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 7, height * y + unitWidth * 5, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 6, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 6, unitWidth, unitWidth);
-
-  },
-  function(context, x, y, width, height) {
-
-    var unitWidth = 0.125 * width;
-    
-    context.fillStyle = "#000";
-    context.fillRect(width * x, height * y, width, height);
-
-    context.fillStyle = "#92BE7C";
-    context.fillRect(width * x, height * y + unitWidth, width - unitWidth, height - unitWidth * 2);
-
-    // Dots
-    context.fillStyle = "#3C6A4E";
-    context.fillRect(width * x + unitWidth * 0, height * y + unitWidth * 1, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 1, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 2, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 3, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 4, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 4, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 5, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 6, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 6, unitWidth, unitWidth);
-  },
-
-  // v1
-  function(context, x, y, width, height) {
-
-    var unitWidth = 0.125 * width;
-    context.fillStyle = "#000";
-    context.fillRect(width * x, height * y, width, height);
-
-    context.fillStyle = "#92BE7C";
-    context.fillRect(width * x + unitWidth, height * y + unitWidth, width - unitWidth * 2, height - unitWidth);
-
-    // Dots
-    context.fillStyle = "#3C6A4E";
-    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth, unitWidth, unitWidth);
-    
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 2, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 2, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth, height * y + unitWidth * 4, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 4, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 5, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 6, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 6, unitWidth, unitWidth);
-
-  },
-  function(context, x, y, width, height) {
-
-    var unitWidth = 0.125 * width;
-    
-    context.fillStyle = "#000";
-    context.fillRect(width * x, height * y, width, height);
-
-    context.fillStyle = "#92BE7C";
-    context.fillRect(width * x + unitWidth, height * y, width - unitWidth * 2, height);
-
-    // Dots
-    context.fillStyle = "#3C6A4E";
-
-    context.fillRect(width * x + unitWidth * 3, height * y, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 6, height * y, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth, height * y + unitWidth * 1, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 2, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 2, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 3, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 4, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 5, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 5, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 6, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 7, unitWidth, unitWidth);
-  
-  },
-  function(context, x, y, width, height) {
-
-    var unitWidth = 0.125 * width;
-    
-    context.fillStyle = "#000";
-    context.fillRect(width * x, height * y, width, height);
-
-    context.fillStyle = "#92BE7C";
-    context.fillRect(width * x + unitWidth, height * y, width - unitWidth * 2, height);
-
-    // Dots
-    context.fillStyle = "#3C6A4E";
-
-    context.fillRect(width * x + unitWidth * 3, height * y, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 6, height * y, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth, height * y + unitWidth * 1, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 2, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 2, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 3, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 4, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 5, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 5, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 6, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 7, unitWidth, unitWidth);
-  },
-  function(context, x, y, width, height) {
-
-    var unitWidth = 0.125 * width;
-    
-    context.fillStyle = "#000";
-    context.fillRect(width * x, height * y, width, height);
-
-    context.fillStyle = "#92BE7C";
-    context.fillRect(width * x + unitWidth, height * y, width - unitWidth * 2, height - unitWidth);
-
-    // Dots
-    context.fillStyle = "#3C6A4E";
-
-    context.fillRect(width * x + unitWidth * 6, height * y, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 1, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 2, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 5, height * y + unitWidth * 2, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 3, height * y + unitWidth * 3, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 1, height * y + unitWidth * 4, unitWidth, unitWidth);
-    context.fillRect(width * x + unitWidth * 6, height * y + unitWidth * 4, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 4, height * y + unitWidth * 5, unitWidth, unitWidth);
-
-    context.fillRect(width * x + unitWidth * 2, height * y + unitWidth * 6, unitWidth, unitWidth);
+/**
+ * Color Manager
+ * - Handles the slow hue rotations of colors
+ */
+
+function ColorManager( baseColor ){
+  this.hueRotation = 0;
+  this.rotationSpeed = 4;
+  this.baseColor = '#F0C9DD'; // Light pink
+};
+
+ColorManager.prototype.getColor = function(){
+
+  // Rotate hue's for every new piece.
+  this.hueRotation += this.rotationSpeed;
+  if( this.hueRotation > 360 ) {
+    this.hueRotation = 0;
   }
-]
 
-var drawFunctions = [
-
-  square,
-
-  jay,
-
-  ell,
-
-  zee,
-
-  ess,
-
-  tee,
-
-  eyes
-
-]
-
-function DrawFunctions(){};
-
-DrawFunctions.prototype.getDrawFunction = function(index){
-
-  if( drawFunctions[index]) {
-    return drawFunctions[index];
-  } else {
-    return drawFunctions[5];
-  }
-}
+  return changeHue(this.baseColor, this.hueRotation);
+};
 /**
  * Grid
  * - Manages the state of the grid
@@ -542,14 +319,8 @@ Grid.prototype.addPiece = function(piece) {
       if (piece.cells[r][c] != 0 && _r >= 0){
 
         // TH: Updates color, rather than 1
-        if (piece.cells[r][c] > 1) {
-          var num = piece.cells[r][c] - 2;
-          this.cells[_r][_c] = piece.color[num];
-        } else {
-          this.cells[_r][_c] = piece.color;
-        }
+        this.cells[_r][_c] = piece.color;
       }
-
     }
   }
 };
@@ -736,7 +507,7 @@ Piece.fromIndex = function(index, color){
     case 6: // I
       cells = [
         [0, 0, 0, 0],
-        [2, 3, 4, 5],
+        [1, 1, 1, 1],
         [0, 0, 0, 0],
         [0, 0, 0, 0]
       ];
@@ -846,6 +617,7 @@ GameManager.prototype.setup = function(){
   this.pieceHeight = this.pieceWidth;
 
   this.displacementWidth = Math.floor(this.pieceWidth / 4);
+  this.strokeThickness = 20;
 
   var canvasHeightPieces = Math.ceil(window.innerHeight / this.pieceHeight) + 2;
 
@@ -884,10 +656,14 @@ GameManager.prototype.actuate = function(){
       
       if (_grid.cells[r][c] != 0){
 
+        context.fillStyle = _grid.cells[r][c];
+        context.strokeStyle = _grid.cells[r][c];
+        context.fillRect(this.pieceWidth * c, this.pieceHeight * r, this.pieceWidth, this.pieceHeight);
 
-        // console.log(_grid.cells[r], _grid.cells[r][c]);
-        _grid.cells[r][c](context, c, r, this.pieceWidth, this.pieceHeight);
-        
+        // Border?
+        context.fillStyle = "rgba(255, 255, 255, 0.3)";
+        context.fillRect(this.pieceWidth * c + this.displacementWidth, this.pieceHeight * r + this.displacementWidth, this.pieceWidth / 2, this.strokeThickness);
+        context.fillRect(this.pieceWidth * c + this.displacementWidth, this.pieceHeight * r + this.displacementWidth + this.strokeThickness, this.strokeThickness, this.pieceWidth / 2 - this.strokeThickness );
       }
     }
   }
@@ -919,17 +695,6 @@ GameManager.prototype.setWorkingPiece = function(){
 
     if (this.aiActive) {
       this.aiMove();
-    }
-
-    // I piece
-    if( this.workingPiece.cells.length > 3) {
-
-      if( this.workingPiece.cells[0][2] !== 0 ) {
-        this.workingPiece.cells[0][2] = 6;
-        this.workingPiece.cells[1][2] = 7;
-        this.workingPiece.cells[2][2] = 8;
-        this.workingPiece.cells[3][2] = 9;
-      }
     }
   }
 
@@ -986,7 +751,7 @@ function RandomPieceGenerator(){
   this.shuffleBag();
   this.index = -1;
 
-  this.drawFunctions = new DrawFunctions();
+  this.colorManager = new ColorManager();
 };
 
 RandomPieceGenerator.prototype.nextPiece = function(){
@@ -997,7 +762,9 @@ RandomPieceGenerator.prototype.nextPiece = function(){
     this.index = 0;
   }
 
-  return Piece.fromIndex(this.bag[this.index], this.drawFunctions.getDrawFunction(this.bag[this.index]));
+  var color = this.colorManager.getColor();
+
+  return Piece.fromIndex(this.bag[this.index], color);
 
 };
 
@@ -1077,7 +844,7 @@ AI.prototype.best = function(grid, workingPieces, workingPieceIndex){
 function Updater(){
   
   this.lastUpdateTime = Date.now();
-  this.deltaThreshold = 50; // MS before each update
+  this.deltaThreshold = 300; // MS before each update
   this.updateCallback = null;
 
   window.requestAnimFrame = function(){ // Polyfill

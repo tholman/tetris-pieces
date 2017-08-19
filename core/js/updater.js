@@ -5,7 +5,7 @@
 function Updater(){
   
   this.lastUpdateTime = Date.now();
-  this.deltaThreshold = 300; // MS before each update
+  this.deltaThreshold = 30; // MS before each update
   this.updateCallback = null;
 
   window.requestAnimFrame = function(){ // Polyfill
