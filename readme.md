@@ -1,6 +1,6 @@
 # Tetris Pieces, for the electric object
 
-A visual artificially intelligent tetris, built to be displayed on your wall.
+A visual artificially intelligent tetris, built to be displayed on your wall. You can see them in action [here](http://tholman.com/tetris-pieces)
 
 This is the source for the styalized version for the electric object. 
 
