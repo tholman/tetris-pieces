@@ -3,21 +3,21 @@
   "version": "1.0.0",
   "description": "Tetris Sims for the Electric Object",
   "main": "gulpfile.js",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "gulp": "^3.9.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tholman/electric-object.git"
+    "url": "git+https://github.com/tholman/electric-object-tetris.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tholman/electric-object/issues"
+    "url": "https://github.com/tholman/electric-object-tetris/issues"
   },
-  "homepage": "https://github.com/tholman/electric-object#readme"
+  "homepage": "https://github.com/tholman/electric-object-tetris#readme"
 }

@@ -1,4 +1,4 @@
-# Electric Object, Tetris Anniversary
+# Tetris Pieces, for the electric object
 
 ### 1. Colors
 - Full screen, colors, autosolving, gradual gradient changes
